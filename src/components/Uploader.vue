@@ -30,8 +30,8 @@
       </slot>
     </div>
     <div class="upload-list" v-if="files.length > 0">
-      <div class="upload-list__item" v-for="(file, index) in files" :class="{'upload-list__item--doc': !file.includes('data:image/jpeg;base64') && !file.includes('data:image/jpg;base64') && !file.includes('data:image/png;base64') && !file.includes('data:image/gif;base64')}">
-        <div v-if="file.includes('data:image/jpeg;base64') || file.includes('data:image/jpg;base64') || file.includes('data:image/png;base64') || file.includes('data:image/gif;base64')">
+      <div class="upload-list__item" v-for="(file, index) in files" :class="{'upload-list__item--doc': !checkOnImageFile(file)}">
+        <div v-if="checkOnImageFile(file)">
           <div class="upload-list__file-wrapper">
             <img class="upload-list__file" :src="file" />
           </div>
@@ -40,7 +40,7 @@
           </slot>
         </div>
         <div class="upload-list__tag" v-else="v-else">{{ fileName[index] }}</div>
-        <div class="upload-list__remove" @click="removeFile(index)" :class="{'upload-list__remove--doc': !file.includes('data:image/jpeg;base64') && !file.includes('data:image/jpg;base64') && !file.includes('data:image/png;base64') && !file.includes('data:image/gif;base64')}">
+        <div class="upload-list__remove" @click="removeFile(index)" :class="{'upload-list__remove--doc': !checkOnImageFile(file)}">
           <slot>
             <i>x</i>
           </slot>
@@ -80,6 +80,12 @@ export default {
     this.acceptedFilesReplaced = this.acceptedFiles.replace(/ /g, '')
   },
   methods: {
+    checkOnImageFile (file) {
+      return file.includes('data:image/jpeg;base64') ||
+        file.includes('data:image/jpg;base64') ||
+        file.includes('data:image/png;base64') ||
+        file.includes('data:image/gif;base64')
+    },
     onFileChange (e) {
       this.size = false
       let files = e.target.files || e.dataTransfer.files
