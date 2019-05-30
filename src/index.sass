@@ -1,0 +1,84 @@
+.upload-list
+  margin: 0 -15px
+  @media only screen and (min-width: 480px)
+    display: flex
+    align-items: center 
+    flex-wrap: wrap
+  &__item
+    position: relative
+    border-radius: 5px
+    overflow: hidden
+    width: calc(100% - 30px)
+    margin: 15px
+    @media only screen and (min-width: 480px)
+      width: 130px
+    &--doc
+      @media only screen and (min-width: 480px)
+        width: auto
+        max-width: 250px
+  &__file
+    max-height: 100%
+    max-width: 100%
+  &__file-wrapper
+    display: flex
+    justify-content: center
+    align-items: center
+    overflow: hidden
+    width: 100%
+    height: 92px
+  &__description
+    margin-top: 15px
+  &__remove
+    position: absolute
+    top: 0
+    right: 0
+    cursor: pointer
+    width: 16px
+    height: 16px
+    display: flex
+    align-items: center
+    justify-content: center
+    color: #fe970e
+    background-color: transparent
+    font-size: 22px
+  &__remove
+    &--doc
+      font-size: 11px
+      top: 50%
+      transform: translateY(-50%)
+      right: 10px
+  &__tag
+    background-color: #f6f7f9
+    width: 100%
+    box-sizing: border-box
+    padding: 9px 40px 9px 9px
+    display: flex
+    line-height: 15px
+    word-break: break-all
+.upload
+  margin-top: 10px
+  &__wrapper
+    &.disabled
+      cursor: not-allowed
+      .label
+        display: block
+        pointer-events: none
+        opacity: .7
+        transition: .3s opacity ease
+  &__text
+    margin-left: 25px
+  &__errors
+    display: flex
+    flex-direction: column
+  &__message
+    margin-top: 20px
+  &__error
+    color: #dc3545
+  &__input
+    display: none
+  &__button
+    border-radius: 5px
+    padding: 5px
+    border: 1px solid orange
+    text-align: center
+    cursor: pointer
